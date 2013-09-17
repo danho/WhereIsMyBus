@@ -1,4 +1,4 @@
-WhereIsMyBus
-============
+septa-push
+==========
 
-Real time tracking for SEPTA buses
+Real time pushing of the deltas of SEPTA bus data
