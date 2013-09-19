@@ -142,8 +142,8 @@ function sendTimedMessage(socket) {
   // send initial data
   sendData(socket);
 
-  // send deltas of the data every 2 seconds
+  // send deltas of the data every 1 seconds
   setInterval(function() {
     sendData(socket);
-  }, 2000);
+  }, 1000);
 }

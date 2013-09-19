@@ -24,13 +24,15 @@ function addMarker(lat, lng, id) {
 }
 
 function updateMarker(lat, lng, id) {
-  // console.log("input id is " + id);
   for (i=0; i<markers.length; i++) {
     if (markers[i].title == id) {
-      console.log("test " + markers[i].title);
-      markers[i].lat = lat;
-      markers[i].lng = lng;
-      break;
+      if (markers[i].lat == lat && markers[i].lng == lng) {
+        break;
+      } else {
+        markers[i].setPosition(new google.maps.LatLng(lat, lng));
+        map.panTo(new google.maps.LatLng(lat, lng));
+        break;
+      }
     }
   }
 }
