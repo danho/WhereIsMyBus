@@ -1,9 +1,11 @@
 window.onload = function() {
 
-  var socket = io.connect("http://localhost:3700");
+  var socket = io.connect("http://localhost:5000");
 
   socket.on('init', function(data) {
-    console.log(data.message);
+    for (i=0; i<data.message.bus.length; i++) {
+      addMarker(data.message.bus[i].lat, data.message.bus[i].lng);
+    }
   });
 
   socket.on('delta', function(data) {

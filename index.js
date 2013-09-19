@@ -23,7 +23,7 @@ function sendData(socket) {
     res.on('end', function() {
 
       // init
-      if (data == null) {
+      if (data === null) {
         data = JSON.parse(body);
         parseData(data);
         socket.emit('init', { message: data });
@@ -33,7 +33,7 @@ function sendData(socket) {
       data = JSON.parse(body);
       parseData(data);
 
-      if (delta == true) {
+      if (delta === true) {
         delta = false;
         socket.emit('delta', { message: data });
       }
@@ -48,15 +48,15 @@ function parseData(raw_data) {
 
 
     for (n=0; n<buses.length; n++) {
-      if (buses[n] != null &&
-            buses[n].vehicleID != null && buses[n].vehicleID == vehicleID) {
+      if (buses[n] !== null &&
+            buses[n].vehicleID !== null && buses[n].vehicleID == vehicleID) {
         matchFound = true;
         checkIfDelta(n, raw_data.bus[i]);
         break;
       }
     }
 
-    if (matchFound == false) {
+    if (matchFound === false) {
       var obj = {
         lat: raw_data.bus[i].lat,
         lng: raw_data.bus[i].lng,
@@ -132,6 +132,7 @@ function checkIfDelta(i, raw_data) {
 
 // program starts here
 io.sockets.on('connection', function(socket) {
+  console.log('connected');
   sendTimedMessage(socket);
 });
 
