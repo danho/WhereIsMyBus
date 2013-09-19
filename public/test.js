@@ -4,11 +4,14 @@ window.onload = function() {
 
   socket.on('init', function(data) {
     for (i=0; i<data.message.bus.length; i++) {
-      addMarker(data.message.bus[i].lat, data.message.bus[i].lng);
+      addMarker(data.message.bus[i].lat, data.message.bus[i].lng, data.message.bus[i].VehicleID);
     }
   });
 
   socket.on('delta', function(data) {
-    console.log(data.message);
-  })
+    for (i=0; i<data.message.bus.length; i++) {
+      // console.log("calling updateMarker with id as " + data.message.bus[i].VehicleID);
+      updateMarker(data.message.bus[i].lat, data.message.bus[i].lng, data.message.bus[i].VehicleID);
+    }
+  });
 }
