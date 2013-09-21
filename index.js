@@ -131,6 +131,11 @@ function checkIfDelta(i, raw_data) {
 }
 
 // program starts here
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
+
 io.sockets.on('connection', function(socket) {
   console.log('connected');
   sendTimedMessage(socket);
