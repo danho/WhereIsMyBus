@@ -17,20 +17,20 @@ function addMarker(lat, lng, id) {
     map: map,
     title: id
   });
-
-  // console.log(marker.title);
-
   markers.push(marker);
 }
 
 function updateMarker(lat, lng, id) {
   for (i=0; i<markers.length; i++) {
     if (markers[i].title == id) {
-      if (markers[i].lat == lat && markers[i].lng == lng) {
+      var marker_lat = markers[i].getPosition().lat();
+      var marker_lng = markers[i].getPosition().lng();
+
+      if (marker_lat == lat && marker_lng == lng) {
         break;
       } else {
-        markers[i].setPosition(new google.maps.LatLng(lat, lng));
-        map.panTo(new google.maps.LatLng(lat, lng));
+        markers.splice(i, 1);
+        addMarker(lat, lng, id);
         break;
       }
     }
