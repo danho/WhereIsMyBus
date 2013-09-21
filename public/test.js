@@ -1,6 +1,6 @@
 window.onload = function() {
 
-  var socket = io.connect("http://localhost:5000");
+  var socket = io.connect(window.location.hostname);
 
   socket.on('init', function(data) {
     for (i=0; i<data.message.bus.length; i++) {
